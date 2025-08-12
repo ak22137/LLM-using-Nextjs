@@ -12,34 +12,41 @@ export default function Home() {
   const handleSend = async () => {
     if (!input.trim()) return;
     setLoading(true);
-    // TODO: Call tRPC/gemini API here
-    setMessages([...messages, { role: "user", content: input }]);
+    // Add user message first
+    setMessages(prev => [...prev, { role: "user", content: input }]);
     setInput("");
-    setLoading(false);
+    // Simulate bot response for demo
+    setTimeout(() => {
+      setMessages(prev => [...prev, { role: "system", content: "(Gemini API response here)" }]);
+      setLoading(false);
+    }, 800);
   };
 
   return (
     <AuthProvider>
-      <div className="container-fluid bg-light min-vh-100 d-flex flex-column justify-content-end p-0" style={{ maxWidth: 480, margin: "0 auto" }}>
-        <div className="flex-grow-1 overflow-auto p-3" style={{ maxHeight: "80vh" }}>
+      <div className="container-fluid bg-gradient min-vh-100 d-flex flex-column justify-content-end p-0" style={{ maxWidth: 480, margin: "0 auto" }}>
+        <div className="flex-grow-1 overflow-auto p-3" style={{ maxHeight: "80vh", background: "#f8fafc" }}>
           {messages.map((msg, idx) => (
-            <div key={idx} className={`mb-2 text-${msg.role === "user" ? "end" : "start"}`}>
-              <span className={`badge bg-${msg.role === "user" ? "primary" : "secondary"}`}>{msg.content}</span>
+            <div key={idx} className={`d-flex ${msg.role === "user" ? "justify-content-end" : "justify-content-start"} mb-2`}>
+              <div className={`rounded px-3 py-2 shadow-sm ${msg.role === "user" ? "bg-primary text-white" : "bg-white border"}`} style={{ maxWidth: "80%" }}>
+                {msg.content}
+              </div>
             </div>
           ))}
         </div>
-        <form className="d-flex p-3 border-top bg-white" onSubmit={e => { e.preventDefault(); handleSend(); }}>
+        <form className="d-flex p-3 border-top bg-white" style={{ boxShadow: "0 -2px 8px rgba(0,0,0,0.03)" }} onSubmit={e => { e.preventDefault(); handleSend(); }}>
           <input
-            className="form-control me-2"
+            className="form-control me-2 rounded-pill"
             type="text"
             placeholder="Type your message..."
             value={input}
             onChange={e => setInput(e.target.value)}
             disabled={loading}
             autoFocus
+            style={{ fontSize: "1.1rem" }}
           />
-          <button className="btn btn-primary" type="submit" disabled={loading || !input.trim()}>
-            {loading ? "..." : "Send"}
+          <button className="btn btn-primary rounded-pill px-4" type="submit" disabled={loading || !input.trim()} style={{ fontWeight: 600 }}>
+            {loading ? <span className="spinner-border spinner-border-sm" /> : "Send"}
           </button>
         </form>
       </div>
