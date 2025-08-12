@@ -16,8 +16,12 @@ export default function Home() {
     setMessages(prev => [...prev, { role: "user", content: input }]);
     setInput("");
     // Simulate bot response for demo
+    // Simulate Gemini API call
     setTimeout(() => {
-      setMessages(prev => [...prev, { role: "system", content: "(Gemini API response here)" }]);
+      setMessages(prev => [
+        ...prev,
+        { role: "system", content: "Gemini response: Hello! This is a demo reply." }
+      ]);
       setLoading(false);
     }, 800);
   };
@@ -28,7 +32,16 @@ export default function Home() {
         <div className="flex-grow-1 overflow-auto p-3" style={{ maxHeight: "80vh", background: "#f8fafc" }}>
           {messages.map((msg, idx) => (
             <div key={idx} className={`d-flex ${msg.role === "user" ? "justify-content-end" : "justify-content-start"} mb-2`}>
-              <div className={`rounded px-3 py-2 shadow-sm ${msg.role === "user" ? "bg-primary text-white" : "bg-white border"}`} style={{ maxWidth: "80%" }}>
+              <div
+                className={`rounded px-3 py-2 shadow-sm ${msg.role === "user" ? "bg-primary text-white" : "bg-white border"}`}
+                style={{
+                  maxWidth: "80%",
+                  color: msg.role === "system" ? "#222" : undefined,
+                  background: msg.role === "system" ? "#fff" : undefined,
+                  border: msg.role === "system" ? "1px solid #bbb" : undefined,
+                  fontWeight: msg.role === "system" ? 500 : undefined
+                }}
+              >
                 {msg.content}
               </div>
             </div>
