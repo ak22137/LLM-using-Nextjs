@@ -49,8 +49,8 @@ export default function Home() {
                 style={{
                   maxWidth: "80%",
                   color: msg.role === "user" ? '#111' : (msg.role === "system" ? "#222" : undefined),
-                  background: msg.role === "user" ? '#000000ff' : (msg.role === "system" ? "#000000ff" : undefined),
-                  border: msg.role === "system" ? "1px solid #000000ff" : undefined,
+                  background: msg.role === "user" ? '#e3f0ff' : (msg.role === "system" ? "#fff" : undefined),
+                  border: msg.role === "system" ? "1px solid #bbb" : undefined,
                   fontWeight: 500
                 }}
               >
