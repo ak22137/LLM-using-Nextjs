@@ -45,13 +45,13 @@ export default function Home() {
           {messages.map((msg, idx) => (
             <div key={idx} className={`d-flex ${msg.role === "user" ? "justify-content-end" : "justify-content-start"} mb-2`}>
               <div
-                className={`rounded px-3 py-2 shadow-sm ${msg.role === "user" ? "bg-primary text-white" : "bg-white border"}`}
+                className={`rounded px-3 py-2 shadow-sm ${msg.role === "user" ? "bg-primary" : "bg-white border"}`}
                 style={{
                   maxWidth: "80%",
-                  color: msg.role === "system" ? "#222" : undefined,
-                  background: msg.role === "system" ? "#fff" : undefined,
+                  color: msg.role === "user" ? '#111' : (msg.role === "system" ? "#222" : undefined),
+                  background: msg.role === "user" ? '#e3f0ff' : (msg.role === "system" ? "#fff" : undefined),
                   border: msg.role === "system" ? "1px solid #bbb" : undefined,
-                  fontWeight: msg.role === "system" ? 500 : undefined
+                  fontWeight: 500
                 }}
               >
                 {msg.content}
@@ -68,9 +68,9 @@ export default function Home() {
             onChange={e => setInput(e.target.value)}
             disabled={loading}
             autoFocus
-            style={{ fontSize: "1.1rem" }}
+            style={{ fontSize: "1.1rem", color: '#111', fontWeight: 500, background: '#fff' }}
           />
-          <button className="btn btn-primary rounded-pill px-4" type="submit" disabled={loading || !input.trim()} style={{ fontWeight: 600 }}>
+          <button className="btn rounded-pill px-4" type="submit" disabled={loading || !input.trim()} style={{ fontWeight: 600, background: '#0056b3', color: '#fff', border: 'none' }}>
             {loading ? <span className="spinner-border spinner-border-sm" /> : "Send"}
           </button>
         </form>
