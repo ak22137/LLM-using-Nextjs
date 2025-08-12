@@ -1,6 +1,8 @@
+
 "use client";
 import { useState } from "react";
 import { AuthProvider } from "../lib/AuthProvider";
+import { getTextModel } from "../lib/geminiClient";
 
 export default function Home() {
   const [messages, setMessages] = useState([
@@ -12,18 +14,17 @@ export default function Home() {
   const handleSend = async () => {
     if (!input.trim()) return;
     setLoading(true);
-    // Add user message first
     setMessages(prev => [...prev, { role: "user", content: input }]);
     setInput("");
-    // Simulate bot response for demo
-    // Simulate Gemini API call
-    setTimeout(() => {
-      setMessages(prev => [
-        ...prev,
-        { role: "system", content: "Gemini response: Hello! This is a demo reply." }
-      ]);
-      setLoading(false);
-    }, 800);
+    try {
+      const model = getTextModel();
+      const result = await model.generateContent(input);
+      const geminiReply = result?.response?.text() || "No response from Gemini.";
+      setMessages(prev => [...prev, { role: "system", content: geminiReply }]);
+    } catch (err) {
+      setMessages(prev => [...prev, { role: "system", content: "Error: Could not get Gemini response." }]);
+    }
+    setLoading(false);
   };
 
   return (
