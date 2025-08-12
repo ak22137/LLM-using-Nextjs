@@ -1,0 +1,19 @@
+chatGPT using nextjs
+Create a clone of chatGPT - ONLY MOBILE VIEW. Desktop view is not needed.
+Deploy it on a free account of vercel or render
+you MUST using Nextjs, Nextjs App Router, TRPC (https://trpc.io/docs/client/tanstack-react-query/server-components) and Bootstrap UI (https://1manstartup.com/blogs/install-bootstrap-for-nextjs-app-router)
+database/persistence will be using Supabase ( https://supabase.com/ )
+authentication/login using Auth0 (https://developer.auth0.com/resources/guides/web-app/nextjs/basic-authentication)
+the LLM apis you will use are free - https://ai.google.dev/gemini-api/docs/pricing. You can integrate any two of them. ONE OF THE MODELS MUST GENERATE IMAGES.
+EXTRA BONUS POINTS
+If you do any/all of the following, we will give special preference to you:
+
+Writing testcases using Jest/Enzyme
+If you created this project using ai tools (like cursor, v0, lovable, windsurf)...we will give HIGH preference. This is not a joke or trick - we will strongly prefer candidates who have high productivity using ai tools. To prove that you did this, we will need you to submit a coding video (using loom) where you demonstrate how you are coding this interview using this tool.
+Deadline & instructions for interview
+Please do whatever you can and send it within the deadline. Even if not complete. we will evaluate basis that.
+Create github project named "sample". we will ONLY accept code submissions through github. Do not send us anything on google drive. If your project is not named "sample", we will NOT accept it.
+in the github readme, Please put the link of the running webapp (using vercel/heroku/netlify/firebase). Ensure it is running. THE REST OF THE README SHOULD BE BLANK. THERE SHOULD BE NO ADDITIONAL TEXT OTHER THAN THE LINK.
+Create a demo video using https://www.loom.com/ or youtube. Do NOT use google drive - we will not be able to download videos because of virus concerns. We want you to share your desktop screen and walk us through the code and explain what is happening. You can do it in ENGLISH or HINDI.
+please send the github project url AND the video url on internshala. Please send both urls on internshala. We will see the code and we will see your video. Do not send any doc files or any pdf or anything else. if you have any explanations (or if you had any assumptions/doubts), please put them in the video. You can also send a separate video demonstrating your skill in AI coding tools.
+DO NOT COMMENT ON THIS PAGE. If you have any questions, please reply to us on internshala
